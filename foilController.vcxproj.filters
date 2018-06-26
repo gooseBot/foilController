@@ -15,11 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="__vm\.PWMmeasure.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <None Include="foilController.ino" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="foilController.ino" />
+    <ClInclude Include="__vm\.foilController.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
