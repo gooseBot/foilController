@@ -78,5 +78,10 @@ typedef void *__builtin_va_list;
 #define pgm_read_ptr(address_short)   short()
 
 #include "foilController.ino"
+#include "GPS.ino"
+#include "logging.ino"
+#include "pumpCH3.ino"
+#include "sensors.ino"
+#include "utility.ino"
 #endif
 #endif

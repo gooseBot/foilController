@@ -82,6 +82,21 @@
     <None Include="foilController.ino">
       <FileType>CppCode</FileType>
     </None>
+    <None Include="GPS.ino">
+      <FileType>CppCode</FileType>
+    </None>
+    <None Include="logging.ino">
+      <FileType>CppCode</FileType>
+    </None>
+    <None Include="pumpCH3.ino">
+      <FileType>CppCode</FileType>
+    </None>
+    <None Include="sensors.ino">
+      <FileType>CppCode</FileType>
+    </None>
+    <None Include="utility.ino">
+      <FileType>CppCode</FileType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.foilController.vsarduino.h" />

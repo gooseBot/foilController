@@ -16,6 +16,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="foilController.ino" />
+    <None Include="sensors.ino" />
+    <None Include="GPS.ino" />
+    <None Include="utility.ino" />
+    <None Include="logging.ino" />
+    <None Include="pumpCH3.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.foilController.vsarduino.h">
