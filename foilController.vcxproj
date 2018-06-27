@@ -79,6 +79,9 @@
     <ProjectCapability Include="VisualMicro" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="buzzer.ino">
+      <FileType>CppCode</FileType>
+    </None>
     <None Include="foilController.ino">
       <FileType>CppCode</FileType>
     </None>

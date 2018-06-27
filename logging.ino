@@ -1,14 +1,15 @@
 #include <SD.h>
-File myFile;
+File logFile;
 
 void writeDataToLog() {
   if (pumpOn) {
-    myFile = SD.open("test.txt", FILE_WRITE);
-    if (myFile) {
-      myFile.print(current);  myFile.print(",");
-      myFile.print(temperatureC); myFile.print(",");
-      myFile.println(speed);
-      myFile.close(); // close the file
+    logFile = SD.open("test.txt", FILE_WRITE);
+    if (logFile) {
+      logFile.print(current);  logFile.print(",");
+      logFile.print(ampSecondsConsumed);  logFile.print(",");
+      logFile.print(temperatureC); logFile.print(",");
+      logFile.println(speed);
+      logFile.close(); // close the file
     }
     //if the file didn't open, print an error:
     else {
@@ -22,5 +23,12 @@ void initSD() {
   if (!SD.begin(10)) {
     Serial.println("initialization failed!");
     return;
+  }
+  logFile = SD.open("test.txt", FILE_WRITE);
+  if (logFile) {
+    logFile.println("********* foilController Started **********"); 
+    logFile.close(); // close the file
+  } else {
+    Serial.println("error opening test.txt");
   }
 }

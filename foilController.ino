@@ -4,9 +4,11 @@
     Author:     Eric
 */
 
-float current;
+double current = 0;
 double speed = 0;
-float temperatureC;
+double temperatureC = 0;
+double ampSecondsConsumed = 0;
+int sensorReadInterval = 500;
 bool pumpOn = true;
 
 void setup() {
@@ -14,6 +16,7 @@ void setup() {
   initCH3();
   initSD();
   initGPS();
+  initBuzzer();
   delay(1000);
 }
 
@@ -24,7 +27,9 @@ void loop()
   readTemperature();
   readCH3pwm();
   writeDataToLog();
-  myDelay(500);
+  // sound alarm when 2.5AmpHrs are consumed.
+  if (ampSecondsConsumed > 9000) { beep(); };
+  myDelay(sensorReadInterval);
 }
 
 

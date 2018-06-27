@@ -79,6 +79,7 @@ typedef void *__builtin_va_list;
 
 #include "foilController.ino"
 #include "GPS.ino"
+#include "buzzer.ino"
 #include "logging.ino"
 #include "pumpCH3.ino"
 #include "sensors.ino"

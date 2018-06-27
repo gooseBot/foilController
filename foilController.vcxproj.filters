@@ -21,6 +21,7 @@
     <None Include="utility.ino" />
     <None Include="logging.ino" />
     <None Include="pumpCH3.ino" />
+    <None Include="buzzer.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.foilController.vsarduino.h">
