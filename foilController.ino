@@ -6,9 +6,12 @@
 
 double current = 0;
 double speed = 0;
+double lat = 0;
+double lng = 0;
 double temperatureC = 0;
 double ampSecondsConsumed = 0;
 int sensorReadInterval = 500;
+int currentAnalog = 0;  //I logged this value when I calibrated the current sensor
 bool pumpOn = true;
 
 void setup() {

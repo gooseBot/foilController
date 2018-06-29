@@ -14,16 +14,16 @@ void readCurrent() {
   // Output will be centered @ 2.5V
   // IMPORTANT: connect so current reduces voltage to analog in
   //(feed the wire from exposed ferrite side to enclosed side)
-  // Analog reading @ 0A = 5.61/2 * 1024 / 5 = 574(actual reading 580)
+  // Calculated analog reading @ 0A = 5.61/2 * 1024 / 5 = 574 (actual reading from sensor is: 580)
   // A @ 0.0327 V / A => 2.5V - 2.35V = 0.15V => reading 154
 
   const byte currentPin = A0;
-  const int zeroPoint = 586;
-  const double ampPerStep = 0.366; // 2.2 / (586 - 580) Values to be adjusted/calibrated
+  const int zeroPoint = 582;
+  const double ampPerStep = 0.366; // 2.2amps / (586 - 580)  formula: [measured amps]/[analog reading with load - analog reading with 0 load]
   int currentAnalogSteps = 0;
 
-  //int currentAnalog = analogRead(currentPin);
-  //Serial.print(currentSensorAnalog); Serial.println(" reading");
+  currentAnalog = analogRead(currentPin);
+  //Serial.print(currentAnalog); Serial.println(" amps analog");
   currentAnalogSteps = zeroPoint - analogRead(currentPin);
   current = ampPerStep * currentAnalogSteps;
   // accumlate drain on batteries if more than 2 amps are being drawn.  

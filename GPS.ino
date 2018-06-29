@@ -15,6 +15,8 @@ void readGPS() {
       //Serial.print(" Speed= ");
       //Serial.println(gps.speed.mph(), 2);
       speed = gps.speed.mph();
+      lat = gps.location.lat();
+      lng = gps.location.lng();
     }
   }
 }

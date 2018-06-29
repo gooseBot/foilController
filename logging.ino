@@ -6,9 +6,12 @@ void writeDataToLog() {
     logFile = SD.open("test.txt", FILE_WRITE);
     if (logFile) {
       logFile.print(current);  logFile.print(",");
+      logFile.print(currentAnalog);  logFile.print(",");
       logFile.print(ampSecondsConsumed);  logFile.print(",");
       logFile.print(temperatureC); logFile.print(",");
-      logFile.println(speed);
+      logFile.print(lat,6); logFile.print(",");
+      logFile.print(lng,6); logFile.print(",");
+      logFile.println(speed); 
       logFile.close(); // close the file
     }
     //if the file didn't open, print an error:
