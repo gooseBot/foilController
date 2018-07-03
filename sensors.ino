@@ -19,7 +19,8 @@ void readCurrent() {
 
   const byte currentPin = A0;
   const int zeroPoint = 582;
-  const double ampPerStep = 0.366; // 2.2amps / (586 - 580)  formula: [measured amps]/[analog reading with load - analog reading with 0 load]
+  //const double ampPerStep = 0.366; // 2.2amps / (586 - 580)  formula: [measured amps]/[analog reading with load - analog reading with 0 load]
+  const double ampPerStep = 0.383; // adjusted by amps consumed vs amps stored during charging on 7/2/18
   int currentAnalogSteps = 0;
 
   currentAnalog = analogRead(currentPin);
