@@ -1,3 +1,4 @@
+
 /*
     Name:       foilController.ino
     Created:	5/22/2018 8:32:20 PM
@@ -34,6 +35,3 @@ void loop()
   if (ampSecondsConsumed > 9000) { beep(); };
   myDelay(sensorReadInterval);
 }
-
-
-
