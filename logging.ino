@@ -1,6 +1,6 @@
 #include <SD.h>
 File logFile;
-char newfile[50];
+char newfile[13];
 
 void writeDataToLog() {
   if (pumpOn) {
@@ -26,18 +26,28 @@ void writeDataToLog() {
 }
 
 void initSD() {
-  pinMode(10, OUTPUT);
+  myDelay(5000);   //seems needed before serial output will work
+  Serial.println("init SD");
   if (!SD.begin(10)) {
     Serial.println("initialization failed!");
     return;
   }
-  sprintf(newfile, "%u.csv", millis());
-  Serial.println(newfile);
+  for (int i = 0; i <= 255; i++) {
+     sprintf(newfile, "data%03d.csv", i);
+     Serial.print(newfile);
+     if (SD.exists(newfile)) {
+        Serial.println(" exists");
+     } else {
+        Serial.println(" to be created");
+        break;
+     }
+  }
   logFile = SD.open(newfile, FILE_WRITE);
   if (logFile) {
     logFile.println("********* foilController Started **********");
     logFile.println("millis,current,currentAnalog,ampSecondsConsumed,temperatureC,lat,lng,speed"); 
     logFile.close(); // close the file
+    Serial.println("created log file");
   } else {
     Serial.println("error opening output file");
   }

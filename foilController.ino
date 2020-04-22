@@ -17,6 +17,7 @@ bool pumpOn = true;
 
 void setup() {
   Serial.begin(9600);
+  delay(1000);
   initCH3();
   initSD();
   initGPS();
