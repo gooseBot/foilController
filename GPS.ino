@@ -12,11 +12,11 @@ void readGPS() {
       Serial.print(gps.location.lat(), 6);
       Serial.print(" Longitude= ");
       Serial.println(gps.location.lng(), 6);
-      Serial.print(" Speed= ");
+      Serial.print(" gpsSpeed= ");
       Serial.println(gps.speed.mph(), 2);
-      speed = gps.speed.mph();
-      lat = gps.location.lat();
-      lng = gps.location.lng();
+      gpsSpeed = gps.speed.mph();
+      gpsLat = gps.location.lat();
+      gpsLng = gps.location.lng();
     }
   }
 }

@@ -1,14 +1,3 @@
-void readTemperature() {
-  const int temperaturePin = 8;
-  //getting the voltage reading from the temperature sensor
-  int reading = analogRead(temperaturePin);
-  // converting that reading to voltage
-  double voltage = reading * 5.0; voltage /= 1024.0;
-  // now print out the temperature
-  temperatureC = (voltage - 0.5) * 100;  //converting from 10 mv per degree wit 500 mV offset
-                                         //to degrees ((voltage - 500mV) times 100)
-}
-
 void readCurrent() {
   // 5.0V to sensor
   // Output will be centered @ 2.5V
@@ -21,17 +10,21 @@ void readCurrent() {
   const int zeroPoint = 582;
   //const double ampPerStep = 0.366; // 2.2amps / (586 - 580)  formula: [measured amps]/[analog reading with load - analog reading with 0 load]
   const double ampPerStep = 0.383; // adjusted by amps consumed vs amps stored during charging on 7/2/18
-  int currentAnalogSteps = 0;
+  int currentAnalogSteps = 0;  
+  static unsigned long lastCurrentReadingTime = 0;
 
+  //first time through this needs to be set
+  if (lastCurrentReadingTime==0) {lastCurrentReadingTime=millis();}
+  
   currentAnalog = analogRead(currentPin);
-  //Serial.print(currentAnalog); Serial.println(" amps analog");
   currentAnalogSteps = zeroPoint - analogRead(currentPin);
   current = ampPerStep * currentAnalogSteps;
+  
   // accumlate drain on batteries if more than 2 amps are being drawn.  
   //     less than 2 is probably poor calibration and not actual draw.
+  currentReadPeriod = millis() - lastCurrentReadingTime;
   if (current > 2) {
-    ampSecondsConsumed += current * ((double)sensorReadInterval / 1000);
-  }  
-  //Serial.print(current); Serial.println(" amps");
-  //Serial.print(ampSecondsConsumed); Serial.println(" consumed");
+    ampSecondsConsumed += current * ((double)currentReadPeriod / 1000);
+  }
+  lastCurrentReadingTime = millis();
 }
