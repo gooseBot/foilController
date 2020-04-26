@@ -1,3 +1,5 @@
+double temperatureC = 0;
+
 void readTemperature() {
   const int temperaturePin = 8;
   //getting the voltage reading from the temperature sensor

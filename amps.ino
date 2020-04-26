@@ -1,3 +1,8 @@
+int currentAnalog = 0;  //I logged this value when I calibrated the current sensor
+double current = 0;
+
+unsigned long currentReadPeriod=0;
+
 void readCurrent() {
   // 5.0V to sensor
   // Output will be centered @ 2.5V
@@ -8,8 +13,8 @@ void readCurrent() {
 
   const byte currentPin = A0;
   const int zeroPoint = 582;
-  //const double ampPerStep = 0.366; // 2.2amps / (586 - 580)  formula: [measured amps]/[analog reading with load - analog reading with 0 load]
-  const double ampPerStep = 0.383; // adjusted by amps consumed vs amps stored during charging on 7/2/18
+  const double ampPerStep = 0.366; // 2.2amps / (586 - 580)  formula: [measured amps]/[analog reading with load - analog reading with 0 load]
+  //const double ampPerStep = 0.383; // adjusted by amps consumed vs amps stored during charging on 7/2/18
   int currentAnalogSteps = 0;  
   static unsigned long lastCurrentReadingTime = 0;
 

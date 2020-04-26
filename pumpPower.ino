@@ -1,10 +1,8 @@
 #include <Servo.h>
 static Servo receiverCH3switch;
-static Servo receiverPowerSwitch;
 const int receiverCH3switchPin = 6;
-const int receiverPowerSwitchPin = 4;
 bool pumpForcedOn = true;
-bool powerLowWarningIssued = false;
+bool pumpOn = true;
 
 void readCH3pwm() {
   const int CH3buttonPin = 5;
@@ -40,20 +38,4 @@ void readCH3pwm() {
 void initPumpPower() {
   receiverCH3switch.attach(receiverCH3switchPin);
   receiverCH3switch.write(135);
-}
-
-void initReceiverPower() {
-  receiverPowerSwitch.attach(receiverPowerSwitchPin);
-  receiverPowerSwitch.write(135);  
-}
-
-void pulseReceiverPower() {
-  if (!powerLowWarningIssued) {
-    powerLowWarningIssued=true;
-    Serial.println("Receiver off");
-    receiverPowerSwitch.write(45);    //turn off receiver
-    myDelay(3500);                    //takes three seconds for ESC to turn off.
-    receiverPowerSwitch.write(135);   //turn on receiver
-    Serial.println("Receiver on");
-  }
 }

@@ -1,6 +1,10 @@
 #include "TinyGPS++.h"
 TinyGPSPlus gps;
 
+double gpsSpeed = 0;
+double gpsLat = 0;
+double gpsLng = 0;
+
 void readGPS() {
   while (Serial1.available() > 0) {
     byte gpsData = Serial1.read();
@@ -8,12 +12,6 @@ void readGPS() {
 
     gps.encode(gpsData);
     if (gps.location.isUpdated()) {
-      Serial.print("Latitude= ");
-      Serial.print(gps.location.lat(), 6);
-      Serial.print(" Longitude= ");
-      Serial.println(gps.location.lng(), 6);
-      Serial.print(" gpsSpeed= ");
-      Serial.println(gps.speed.mph(), 2);
       gpsSpeed = gps.speed.mph();
       gpsLat = gps.location.lat();
       gpsLng = gps.location.lng();
