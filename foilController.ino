@@ -10,7 +10,7 @@
   0,1 GPS (serial1)
   4 receiverPowerSwitchPin
   5 CH3buttonPin
-  6 receiverCH3switchPin
+  6 pumpPowerRelayPin
   7 rpmPulsePin
   8 temperaturePin
   9 Buzzer
@@ -43,7 +43,7 @@ void loop()
    readGPS();
    readCurrent();
    readTemperature();
-   readCH3pwm();
+   setPumpState();
    calcRPM();  
    // sound alarm when 3.3 AmpHrs are consumed.
    if (ampSecondsConsumed > 12000) {  

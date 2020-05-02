@@ -7,6 +7,9 @@ void initReceiverPower() {
   receiverPowerSwitch.write(135);  
 }
 
+// this  is done as a low battery warning to the user
+//   pulse power 3 times to get their attention
+//   do it while foil operating
 void pulseReceiverPower() {
   static int warningCount=0;
   
