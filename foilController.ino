@@ -5,6 +5,20 @@
     Author:     Eric
 */
 
+/*
+  Pins in use
+  0,1 GPS (serial1)
+  4 receiverPowerSwitchPin
+  5 CH3buttonPin
+  6 receiverCH3switchPin
+  7 rpmPulsePin
+  8 temperaturePin
+  9 Buzzer
+  10 SD select
+  18 (A0) current
+  14,15,16 SPI
+*/
+ 
 // ino tabs are joing in alpha order before compiling
 // variables must be declared before used.  So order of tabs is important
 // writeLog is last as it uses variables defined earlier.
@@ -31,8 +45,8 @@ void loop()
    readTemperature();
    readCH3pwm();
    calcRPM();  
-   // sound alarm when 2.5 AmpHrs are consumed.
-   if (ampSecondsConsumed > 9000) {  
+   // sound alarm when 3.3 AmpHrs are consumed.
+   if (ampSecondsConsumed > 12000) {  
       Serial.println("power warning");
       beep();
       pulseReceiverPower(); 
