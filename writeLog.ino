@@ -16,7 +16,8 @@ void writeDataToLog() {
       //logFile.println(temperatureC);
       logFile.print(gpsLat,6); logFile.print(",");
       logFile.print(gpsLng,6); logFile.print(",");
-      logFile.println(gpsSpeed); 
+      logFile.print(gpsSpeed); logFile.print(",");
+      logFile.println(ampSecondsWarning);
       logFile.close(); // close the file
     } else {
       Serial.println("error opening output file");
@@ -48,7 +49,7 @@ void initSD() {
   
   if (logFile) {
     logFile.println("********* foilController Started **********");
-    logFile.println("millis,rpm,current,currentAnalog,currentReadPeriod,ampSecondsConsumed,temperatureC,lat,lng,gpsSpeed"); 
+    logFile.println("millis,rpm,current,currentAnalog,currentReadPeriod,ampSecondsConsumed,temperatureC,lat,lng,gpsSpeed,ampSecondsWarning"); 
     logFile.close(); // close the file
     Serial.println("created log file");
   } else {

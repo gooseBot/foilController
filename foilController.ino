@@ -24,6 +24,7 @@
 // writeLog is last as it uses variables defined earlier.
 
 double ampSecondsConsumed = 0;
+int ampSecondsWarning = 0;
 
 void setup() {
    Serial.begin(9600);
@@ -34,6 +35,7 @@ void setup() {
    initGPS();
    initBuzzer();
    initRPM();
+   initBatteryWarningLevel();
 }
 
 void loop()
@@ -46,7 +48,8 @@ void loop()
    setPumpState();
    calcRPM();  
    // sound alarm when 3.3 AmpHrs are consumed.
-   if (ampSecondsConsumed > 12000) {  
+   Serial.println(ampSecondsWarning);
+   if (ampSecondsConsumed > ampSecondsWarning) {  
       Serial.println("power warning");
       beep();
       pulseReceiverPower(); 
