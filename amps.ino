@@ -25,10 +25,10 @@ void readCurrent() {
   currentAnalogSteps = zeroPoint - analogRead(currentPin);
   current = ampPerStep * currentAnalogSteps;
   
-  // accumlate drain on batteries if more than 2 amps are being drawn.  
-  //     less than 2 is probably poor calibration and not actual draw.
+  // accumlate drain on batteries if more than 3 amps are being drawn.  
+  //     less than 3 is probably poor calibration and not actual draw.
   currentReadPeriod = millis() - lastCurrentReadingTime;
-  if (current > 2) {
+  if (current > 3) {
     ampSecondsConsumed += current * ((double)currentReadPeriod / 1000);
   }
   lastCurrentReadingTime = millis();

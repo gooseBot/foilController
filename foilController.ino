@@ -1,4 +1,3 @@
-
 /*
     Name:       foilController.ino
     Created:	5/22/2018 8:32:20 PM
@@ -8,8 +7,9 @@
 /*
   Pins in use
   0,1 GPS (serial1)
-  4 receiverPowerSwitchPin
-  5 CH3buttonPin
+  2 CH2inputPin
+  3 CH3inputPin
+  5 ESCpin
   6 pumpPowerRelayPin
   7 rpmPulsePin
   8 temperaturePin
@@ -28,7 +28,7 @@ int ampSecondsWarning = 0;
 
 void setup() {
    Serial.begin(9600);
-   myDelay(5000);   //seems needed before serial output will work
+   myDelay(3000);   //seems needed before serial output will work
    initPumpPower();
    initReceiverPower();
    initSD();
@@ -47,10 +47,8 @@ void loop()
    readTemperature();
    setPumpState();
    calcRPM();  
-   // sound alarm when 3.3 AmpHrs are consumed.
-   Serial.println(ampSecondsWarning);
-   if (ampSecondsConsumed > ampSecondsWarning) {  
-      Serial.println("power warning");
+   // sound alarm when battery AmpHrs are consumed.
+   if (ampSecondsConsumed > ampSecondsWarning) {
       beep();
       pulseReceiverPower(); 
    };  

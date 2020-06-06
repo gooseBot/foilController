@@ -7,5 +7,7 @@ void myDelay(int mseconds) {
   while ((endtime - starttime) <= (unsigned long)mseconds) // do the loop
   {
     endtime = millis();                  //keep the arduino awake.
+    //and keep realtime stuff going.
+    relayCH2();
   }
 }
