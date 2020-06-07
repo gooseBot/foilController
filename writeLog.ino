@@ -3,7 +3,7 @@ File logFile;
 char newfile[13];
 
 void writeDataToLog() {
-  if (current > 3.0) {
+  if (current > currentThreshhold) {
     logFile = SD.open(newfile, FILE_WRITE);
     if (logFile) {
       logFile.print(millis()/1000/60.0);  logFile.print(",");

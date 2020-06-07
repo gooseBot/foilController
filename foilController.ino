@@ -23,8 +23,9 @@
 // variables must be declared before used.  So order of tabs is important
 // writeLog is last as it uses variables defined earlier.
 
-double ampSecondsConsumed = 0;
+double ampSecondsConsumed = 0.0;
 int ampSecondsWarning = 0;
+double currentThreshhold = 3.0;
 
 void setup() {
    Serial.begin(9600);
@@ -47,10 +48,10 @@ void loop()
    readTemperature();
    setPumpState();
    calcRPM();  
-   // sound alarm when battery AmpHrs are consumed.
+   // sound alarm when battery AmpHrs are nearly consumed.
    if (ampSecondsConsumed > ampSecondsWarning) {
       beep();
-      pulseReceiverPower(); 
+      pulseReceiverSignal(); 
    };  
    writeDataToLog();
    myDelay(sensorReadInterval);
