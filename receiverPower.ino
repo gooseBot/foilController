@@ -25,7 +25,7 @@ void relayCH2() {
 }
 
 void rampDownThrottle() {
-  int rampRate = 100;  //microseconds per second
+  int rampRate = 50;  //microseconds per second
   int CH2width = readCH2();
   int rampHeight = CH2width - throttleNeutral;
   unsigned long rampPeriod = ((double)rampHeight/rampRate)*1000L;        

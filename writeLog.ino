@@ -16,8 +16,7 @@ void writeDataToLog() {
       logFile.print(gpsLat,6); logFile.print(",");
       logFile.print(gpsLng,6); logFile.print(",");
       logFile.print(gpsSpeed); logFile.print(",");
-      logFile.print(ampSecondsWarning); logFile.print(",");
-      logFile.println(CH3button);
+      logFile.println(ampSecondsWarning); logFile.print(",");
       logFile.close();
     } else {
       Serial.println("error opening output file");

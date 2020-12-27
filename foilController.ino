@@ -7,16 +7,18 @@
 /*
   Pins in use
   0,1 GPS (serial1)
-  2 CH2inputPin
-  3 CH3inputPin
+  2 CH2inputPin  
+  3 batteryButtonPin
+  4 temperaturePin
   5 ESCpin
   6 pumpPowerRelayPin
   7 rpmPulsePin
-  8 temperaturePin
-  9 Buzzer
+  8 RX HC 12
+  9 BuzzerPin
   10 SD select
-  18 (A0) current
   14,15,16 SPI
+  18 (A0) current
+  19 (A1) TX HC 12
 */
  
 // ino tabs are joing in alpha order before compiling
@@ -36,7 +38,7 @@ void setup() {
    initGPS();
    initBuzzer();
    initRPM();
-   initBatteryWarningLevel();
+   initBatterySize();
 }
 
 void loop()
@@ -47,6 +49,7 @@ void loop()
    readCurrent();
    readTemperature();
    setPumpState();
+   readBatteryButton();
    calcRPM();  
    // sound alarm when battery AmpHrs are nearly consumed.
    if (ampSecondsConsumed > ampSecondsWarning) {
