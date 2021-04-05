@@ -1,6 +1,12 @@
 #include <Servo.h>
+
 static Servo throttle;
 int throttleNeutral = 1450;
+
+void initHC12() {
+  Serial1.begin(9600);
+  //myTransfer.begin(Serial1, false);  //run without debug serial prints
+}
 
 void initReceiverPower() {
   const int ESCpin = 5;
@@ -42,4 +48,11 @@ void rampDownThrottle() {
 int readCH2() {
   const int CH2inputPin = 2;  
   return pulseIn(CH2inputPin, HIGH, 25000); 
+}
+
+int readHC12() {
+  if (Serial1.available()>0) {        // If HC-12 has data
+    String s = Serial1.readStringUntil('\n');  //look into timeout
+    Serial.println(s);
+  }
 }

@@ -6,19 +6,17 @@
 
 /*
   Pins in use
-  0,1 GPS (serial1)
+  0,1 HC12 (serial1)
   2 CH2inputPin  
   3 batteryButtonPin
   4 temperaturePin
   5 ESCpin
   6 pumpPowerRelayPin
   7 rpmPulsePin
-  8 RX HC 12
   9 BuzzerPin
   10 SD select
   14,15,16 SPI
   18 (A0) current
-  19 (A1) TX HC 12
 */
  
 // ino tabs are joing in alpha order before compiling
@@ -31,21 +29,20 @@ double currentThreshhold = 3.0;
 
 void setup() {
    Serial.begin(9600);
-   myDelay(3000);   //seems needed before serial output will work
+   myDelay(3000);   //seems needed before serial output will work   
    initPumpPower();
    initReceiverPower();
    initSD();
-   initGPS();
    initBuzzer();
    initRPM();
    initBatterySize();
+   initHC12();
 }
 
 void loop()
 {
    int sensorReadInterval = 500;
   
-   readGPS();
    readCurrent();
    readTemperature();
    setPumpState();
