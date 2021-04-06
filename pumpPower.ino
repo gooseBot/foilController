@@ -7,7 +7,7 @@ void setPumpState() {
   //  below 500 indicates receiver lost connection, keep pump on.
   //  this is a failsafe and allows flushing pump by simply
   //  turning off the transmitter (power off ESC first via breaker). 
-  if (readCH2() <= 500) {
+  if (readHC12() <= 500) {
     //if no remote turn on pump (this is for flushing)
     pumpPowerRelay.write(135);
     pumpOn = true;

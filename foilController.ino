@@ -50,6 +50,7 @@ void loop()
    calcRPM();  
    // sound alarm when battery AmpHrs are nearly consumed.
    if (ampSecondsConsumed > ampSecondsWarning) {
+      Serial.println("battery alarm");
       beep();
       pulseReceiverSignal(); 
    };  

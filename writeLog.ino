@@ -13,20 +13,22 @@ void writeDataToLog() {
       logFile.print(currentReadPeriod);  logFile.print(",");
       logFile.print(ampSecondsConsumed/3600.0);  logFile.print(",");
       logFile.print(temperatureC); logFile.print(",");
-      logFile.println(ampSecondsWarning); logFile.print(",");
+      logFile.print(ampSecondsWarning); logFile.print(",");
+      //logFile.print(CH2pwm); logFile.print(",");      
+      logFile.println(readHC12()); 
       logFile.close();
     } else {
-      Serial.println("error opening output file");
+      Serial.println(F("error opening output file"));
       Serial.println(newfile);
     }
   }
 }
 
 void initSD() {
-  Serial.println("init SD");
+  Serial.println(F("init SD"));
   
   if (!SD.begin(10)) {
-    Serial.println("initialization failed!");
+    Serial.println(F("initialization failed!"));
     return;
   }
   
@@ -34,9 +36,9 @@ void initSD() {
      sprintf(newfile, "data%03d.csv", i);
      Serial.print(newfile);
      if (SD.exists(newfile)) {
-        Serial.println(" exists");
+        Serial.println(F(" exists"));
      } else {
-        Serial.println(" to be created");
+        Serial.println(F(" to be created"));
         break;
      }
   }
@@ -44,12 +46,13 @@ void initSD() {
   logFile = SD.open(newfile, FILE_WRITE);
   
   if (logFile) {
-    logFile.println("********* foilController Started **********");
-    logFile.println("time,rpm,current,currentAnalog,currentReadPeriod,ampHoursConsumed,temperatureC,ampSecondsWarning,CH3button"); 
+    logFile.println(F("********* foilController Started **********"));
+    //logFile.println(F("time,rpm,current,currentAnalog,currentReadPeriod,ampHoursConsumed,temperatureC,ampSecondsWarning,CH2,HC12")); 
+    logFile.println(F("time,rpm,current,currentAnalog,currentReadPeriod,ampHoursConsumed,temperatureC,ampSecondsWarning,HC12")); 
     logFile.close(); 
-    Serial.println("created log file");
+    Serial.println(F("created log file"));
   } else {
-    Serial.println("error opening output file");
+    Serial.println(F("error opening output file"));
   }
   
 }
