@@ -4,10 +4,8 @@
 CRC8 crc;
 
 static Servo throttle;
-//int throttleNeutral = 1450;
-int throttleNeutral = 1400;
+int throttleNeutral = 1450;
 int HC12pwm = 0;
-//int CH2pwm = 0;
 
 void initHC12() {
   Serial1.begin(9600);
@@ -32,14 +30,8 @@ void pulseReceiverSignal() {
   }
 }
 
-//void relayCH2() {
-//  throttle.writeMicroseconds(readCH2());
-//  //Serial.println(CH2pwm);
-//}
-
 void relayHC12() {
   throttle.writeMicroseconds(readHC12());
-  //Serial.println(readHC12());
 }
 
 void rampDownThrottle() {
@@ -54,15 +46,8 @@ void rampDownThrottle() {
     int rampValue = ((double)rampHeight/rampPeriod)*tCurrent;    
     throttle.writeMicroseconds(PWMwidth-rampValue);
     myDelay(100);
-    //Serial.println(CH2width-rampValue);
   } while (tCurrent < rampPeriod);
 }
-
-//int readCH2() {
-//  const int CH2inputPin = 2;  
-//  CH2pwm = pulseIn(CH2inputPin, HIGH, 25000); 
-//  return CH2pwm;
-//}
 
 int readHC12() {
   static unsigned long lastPWMreadingTime = 0;  
@@ -91,6 +76,7 @@ int readHC12() {
       lastPWMreadingTime = millis();      
     } 
   }
+  
   unsigned long PWMreadPeriod = millis() - lastPWMreadingTime;
   if (PWMreadPeriod > 500){
     return 0;
