@@ -10,5 +10,4 @@ void readTemperature() {
   // now print out the temperature
   temperatureC = (voltage - 0.5) * 100;  //converting from 10 mv per degree with 500 mV offset
                                          //to degrees ((voltage - 500mV) times 100)
-  //Serial.println(temperatureC);
 }

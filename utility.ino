@@ -8,7 +8,6 @@ void myDelay(int mseconds) {
   {
     endtime = millis();                  //keep the arduino awake.
     //and keep realtime stuff going.
-    //relayCH2();
     relayHC12();
   }
 }

@@ -45,7 +45,9 @@ void rampDownThrottle() {
     tCurrent = millis()-tStart;
     int rampValue = ((double)rampHeight/rampPeriod)*tCurrent;    
     throttle.writeMicroseconds(PWMwidth-rampValue);
-    myDelay(100);
+    //don't use myDelay as that will call relayHC12() 
+    //  and defeat purpose of rampDown low battery warning.
+    delay(100);  
   } while (tCurrent < rampPeriod);
 }
 
@@ -55,8 +57,8 @@ int readHC12() {
   if (lastPWMreadingTime==0) {lastPWMreadingTime=millis();}
   static int returnValue;
     
-  if (Serial1.available()>0) {        // If HC-12 has data
-    String s = Serial1.readStringUntil('\n');  //look into timeout
+  if (Serial1.available()>0) {                 // If HC-12 has data
+    String s = Serial1.readStringUntil('\n');  //look into timeout on readStringUntil
     //Serial.println(s);
     int commaIndex = s.indexOf(',');
     String sPWM = s.substring(0, commaIndex);
@@ -78,6 +80,7 @@ int readHC12() {
   }
   
   unsigned long PWMreadPeriod = millis() - lastPWMreadingTime;
+  // if its been more than .5 seconds then shut down motor.
   if (PWMreadPeriod > 500){
     return 0;
   } else {
