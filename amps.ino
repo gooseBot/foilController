@@ -28,7 +28,7 @@ void readCurrent() {
   // accumlate drain on batteries if more than 3 amps are being drawn.  
   //     less than 3 is probably poor calibration and not actual draw.
   currentReadPeriod = millis() - lastCurrentReadingTime;
-  if (current > 3) {
+  if (current > currentThreshhold) {
     ampSecondsConsumed += current * ((double)currentReadPeriod / 1000);
   }
   lastCurrentReadingTime = millis();

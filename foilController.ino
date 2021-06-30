@@ -6,51 +6,53 @@
 
 /*
   Pins in use
-  0,1 GPS (serial1)
-  2 CH2inputPin
-  3 CH3inputPin
+  0,1 HC12 (serial1)
+  2 CH2inputPin  
+  3 batteryButtonPin
+  4 temperaturePin
   5 ESCpin
   6 pumpPowerRelayPin
   7 rpmPulsePin
-  8 temperaturePin
-  9 Buzzer
+  9 BuzzerPin
   10 SD select
-  18 (A0) current
   14,15,16 SPI
+  18 (A0) current
 */
  
 // ino tabs are joing in alpha order before compiling
 // variables must be declared before used.  So order of tabs is important
 // writeLog is last as it uses variables defined earlier.
 
-double ampSecondsConsumed = 0;
+double ampSecondsConsumed = 0.0;
 int ampSecondsWarning = 0;
+double currentThreshhold = 3.0;
 
 void setup() {
    Serial.begin(9600);
-   myDelay(3000);   //seems needed before serial output will work
+   myDelay(3000);   //seems needed before serial output will work   
    initPumpPower();
    initReceiverPower();
    initSD();
-   initGPS();
    initBuzzer();
    initRPM();
-   initBatteryWarningLevel();
+   initBatterySize();
+   initHC12();
 }
 
 void loop()
 {
    int sensorReadInterval = 500;
   
-   readGPS();
    readCurrent();
    readTemperature();
    setPumpState();
+   readBatteryButton();
    calcRPM();  
-   // sound alarm when battery AmpHrs are consumed.
+   // sound alarm when battery AmpHrs are nearly consumed.
    if (ampSecondsConsumed > ampSecondsWarning) {
+      Serial.println("battery alarm");
       beep();
-      pulseReceiverPower(); 
+      pulseReceiverSignal(); 
    };  
    writeDataToLog();
    myDelay(sensorReadInterval);
