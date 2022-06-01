@@ -15,6 +15,6 @@ void beep() {
 void beepBatterySize(int batSize) {
   for (int i=0; i<batSize; i++){
     TimerFreeTone(buzzerPin, 2000, 100);  
-    myDelay(150);
+    myDelay(350);
   }
 }

@@ -9,7 +9,7 @@ void initBatterySize() {
 void readBatteryButton() {
   int buttonValue = digitalRead(batteryButtonPin);
   if (buttonValue == LOW){
-    if (batteryId < 2) {
+    if (batteryId < 3) {
       batteryId++;
     }else{
       batteryId=0;
