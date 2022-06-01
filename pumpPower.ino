@@ -13,7 +13,7 @@ void setPumpState() {
     pumpOn = true;
   } else {
     // turn off pump if foil is not operating 
-    if (current < currentThreshhold ) {
+    if (current < minCurrentThreshhold ) {
       pumpPowerRelay.write(45);
       pumpOn = false;
     } else {

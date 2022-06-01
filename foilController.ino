@@ -25,7 +25,9 @@
 
 double ampSecondsConsumed = 0.0;
 int ampSecondsWarning = 0;
-double currentThreshhold = 3.0;
+double current = 0;
+double maxCurrentThreshhold = 130.0;
+double minCurrentThreshhold = 3.0;
 
 void setup() {
    Serial.begin(9600);
@@ -53,7 +55,14 @@ void loop()
       Serial.println("battery alarm");
       beep();
       pulseReceiverSignal(); 
-   };  
+   };
+   // Kill throttle if over amp draw limit.
+   if (current > maxCurrentThreshhold) {
+      Serial.println("over current");
+      beep();
+      pulseReceiverSignalOverAmp(); 
+   };
+     
    writeDataToLog();
    myDelay(sensorReadInterval);
 }

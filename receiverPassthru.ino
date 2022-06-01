@@ -30,6 +30,12 @@ void pulseReceiverSignal() {
   }
 }
 
+void pulseReceiverSignalOverAmp() {
+  static int warningCount=0;  
+  Serial.println(F("Excessive amp draw ramp down throttle"));
+  rampDownThrottle();
+}
+
 void relayHC12() {
   throttle.writeMicroseconds(readHC12());
 }

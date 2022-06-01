@@ -1,5 +1,4 @@
 int currentAnalog = 0;  //I logged this value when I calibrated the current sensor
-double current = 0;
 
 unsigned long currentReadPeriod=0;
 
@@ -28,7 +27,7 @@ void readCurrent() {
   // accumlate drain on batteries if more than 3 amps are being drawn.  
   //     less than 3 is probably poor calibration and not actual draw.
   currentReadPeriod = millis() - lastCurrentReadingTime;
-  if (current > currentThreshhold) {
+  if (current > minCurrentThreshhold) {
     ampSecondsConsumed += current * ((double)currentReadPeriod / 1000);
   }
   lastCurrentReadingTime = millis();
