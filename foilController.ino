@@ -28,6 +28,8 @@ int ampSecondsWarning = 0;
 double current = 0;
 double maxCurrentThreshhold = 130.0;
 double minCurrentThreshhold = 3.0;
+double maxTempThreshhold = 50.0;
+double temperatureC = 0;
 
 void setup() {
    Serial.begin(9600);
@@ -62,7 +64,13 @@ void loop()
       beep();
       pulseReceiverSignalOverAmp(); 
    };
-     
+   // Kill throttle if over temp limit.
+   if (temperatureC > maxTempThreshhold) {
+      Serial.println("over temperature");
+      beep();
+      pulseReceiverSignalOverAmp(); 
+   };
+   
    writeDataToLog();
    myDelay(sensorReadInterval);
 }
