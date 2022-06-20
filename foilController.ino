@@ -24,7 +24,7 @@
 // writeLog is last as it uses variables defined earlier.
 
 double ampSecondsConsumed = 0.0;
-int ampSecondsWarning = 0;
+double ampSecondsWarning = 0.0;
 double current = 0.0;
 double maxCurrentThreshhold = 140.0;
 double minCurrentThreshhold = 3.0;

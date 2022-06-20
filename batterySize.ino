@@ -21,6 +21,6 @@ void readBatteryButton() {
 void initBatteryWarningLevel() {
     int batteryOptions[] = {5, 8, 13, 28};    
     int batteryOptionsAlias[] = {1, 2, 3, 4};            
-    ampSecondsWarning = batteryOptions[batteryId]*0.67*3600;  // select battery warning capacity
+    ampSecondsWarning = batteryOptions[batteryId]*0.7*3600;  // select battery warning capacity at 30%.
     beepBatterySize(batteryOptionsAlias[batteryId]);    
 }
