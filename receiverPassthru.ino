@@ -30,9 +30,8 @@ void pulseReceiverSignal() {
   }
 }
 
-void pulseReceiverSignalOverAmp() {
-  static int warningCount=0;  
-  Serial.println(F("Excessive amp draw ramp down throttle"));
+void pulseReceiverSignalOverLimits() {  
+  Serial.println(F("Excessive amp draw or batt temp ramp down throttle"));
   rampDownThrottle();
 }
 

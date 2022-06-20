@@ -13,9 +13,9 @@ void writeDataToLog() {
       logFile.print(currentReadPeriod);  logFile.print(",");
       logFile.print(ampSecondsConsumed/3600.0);  logFile.print(",");
       logFile.print(temperatureC); logFile.print(",");
-      logFile.print(ampSecondsWarning); logFile.print(",");
-      //logFile.print(CH2pwm); logFile.print(",");      
-      logFile.println(readHC12()); 
+      logFile.print(ampSecondsWarning); logFile.print(",");            
+      logFile.print(readHC12()); logFile.print(",");
+      logFile.println(maxTempThreshhold); 
       logFile.close();
     } else {
       Serial.println(F("error opening output file"));
@@ -47,8 +47,7 @@ void initSD() {
   
   if (logFile) {
     logFile.println(F("********* foilController Started **********"));
-    //logFile.println(F("time,rpm,current,currentAnalog,currentReadPeriod,ampHoursConsumed,temperatureC,ampSecondsWarning,CH2,HC12")); 
-    logFile.println(F("time,rpm,current,currentAnalog,currentReadPeriod,ampHoursConsumed,temperatureC,ampSecondsWarning,HC12")); 
+    logFile.println(F("time,rpm,current,currentAnalog,currentReadPeriod,ampHoursConsumed,temperatureC,ampSecondsWarning,HC12,maxTempThreshhold")); 
     logFile.close(); 
     Serial.println(F("created log file"));
   } else {
